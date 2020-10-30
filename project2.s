@@ -37,5 +37,9 @@ First:
 	addi $a1, $a1, 1			# added 1 to $a1 because to read the characters from input string
 	j First
 spaceOrEmpty:
-	beq $t9, 0, invalidInputError		# if $t9 = 0 then, it means no non-space character is foun
+	beq $t9, 0, invalidInputError		# if $t9 = 0 then, it means no non-space character is found.
+	li $s5, 0				# this register holds the final sum of the Base-35 number
+	li $t4, 1				# this register holds the exponent of 35. At first, it is 1, then 35, then 35*35
+	li $t7, 0				# this is my loop counter. when it equals 3 the loop exits. 
+	la $s6, four+4				#to start at the end of the string, adding 4 to come backwards
 	
