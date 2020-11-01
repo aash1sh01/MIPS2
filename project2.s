@@ -22,4 +22,8 @@ First:
 	beq $a0, 32, First			#if there is a space in front or back of the input, we just carry on with the loop until we find a non space or non endline character.
 	
 	beq $t9, 1, invalidInputError		# this code is executed after the first four characters after removing the spaces have been counted, so after that all other input is invalid.
+	li $t9, 1				# $t9 = 1 means that a non-space character is discovered
+						# in these lines I am storing 4 characters after a non-space character is found in  another string named Four.
+	la $s6, four				#loading the adress of Four to s6 
+
 	
