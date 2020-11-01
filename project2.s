@@ -1,10 +1,10 @@
 .data
-	invalid: .asciiz "Invalid Input"#String to print if the values are invalid
-	reply: .space 1000		#reserving the 1000 bytes of memory for userInput
-	four: .space 4			#new string with space for just four after the first non-space non-null character add 
+	invalid: .asciiz "Invalid Input"	#String to print if the values are invalid
+	reply: .space 1000			#reserving the 1000 bytes of memory for userInput
+	four: .space 4				#new string with space for just four after the first non-space non-null character add 
 .text
 main:
-							#asking the user for input
+						#asking the user for input
 	li $v0, 8
 	la $a0, reply
 	li $a1, 1000	
@@ -25,5 +25,10 @@ First:
 	li $t9, 1				# $t9 = 1 means that a non-space character is discovered
 						# in these lines I am storing 4 characters after a non-space character is found in  another string named Four.
 	la $s6, four				#loading the adress of Four to s6 
+	lb $a0, -1($a1)                         #storing the first non-space character to the starting address of Four
+	sb $a0, 0($s6)                 
+
+	lb $a0, 0($a1) 				#storing the second non-space character to 1+ starting address of Four
+	sb $a0, 1($s6)
 
 	
