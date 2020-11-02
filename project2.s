@@ -36,4 +36,6 @@ First:
 	sb $a0, 3($s6)
 	addi $a1, $a1, 1			# added 1 to $a1 because to read the characters from input string
 	j First
+spaceOrEmpty:
+	beq $t9, 0, invalidInputError		# if $t9 = 0 then, it means no non-space character is foun
 	
