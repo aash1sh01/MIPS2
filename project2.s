@@ -30,5 +30,10 @@ First:
 
 	lb $a0, 0($a1) 				#storing the second non-space character to 1+ starting address of Four
 	sb $a0, 1($s6)
-
+	lb $a0, 1($a1)	 			#storing the third non-space character to 2+ starting address of Four
+	sb $a0, 2($s6)
+	lb $a0, 2($a1)	 			#storing the fourth non-space character to 3+ starting address of Four
+	sb $a0, 3($s6)
+	addi $a1, $a1, 1			# added 1 to $a1 because to read the characters from input string
+	j First
 	
