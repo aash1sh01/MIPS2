@@ -57,5 +57,7 @@ Loop:
 	slt $t3, $t3, $t0                        # if 47 < t0,  t3 = 1, it acts as a bool so as to treat the input as a number 
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1 
 	addi $t9, $t0, -48			# initialising t9 for the original values have been calculated by substracting the overflowing ASCII
+	beq $t3, 1, convert			# passing it to label convert, if t3 is 1 because it will make sure that it is in our range of rumber 0-9, not special characters.
+
 	
 	
