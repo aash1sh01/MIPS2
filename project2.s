@@ -66,5 +66,10 @@ Loop:
 	addi $t9, $t0, -55     
 	beq $t3, 1, convert
 
+	slti $t2, $t0, 121			#checking valid lcase letter, my range is a to y, so y=121, so using value thats one more so that less than works			
+	li $t3, 96
+	slt $t3, $t3, $t0
+	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1, this checks if it falls under <=96
+
 	
 	
