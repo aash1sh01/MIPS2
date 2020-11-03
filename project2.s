@@ -54,7 +54,7 @@ Loop:
 	li $a3, 1				# the program counter reaches this point when the character is not null, space or endline.
 	slti $t2, $t0, 58       	  		#checking if it is a valid digit. digit...  if t0 < 58, then t2=1 
 	li $t3, 47
-	slt $t3, $t3, $t0                        # if 47 < t0,  t3 = 1, it acts as a bool so as to treat the input as a number 
+	slt $t3, $t3, $t0                       # if 47 < t0,  t3 = 1, it acts as a bool so as to treat the input as a number 
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1 
 	addi $t9, $t0, -48			# initialising t9 for the original values have been calculated by substracting the overflowing ASCII
 	beq $t3, 1, convert			# passing it to label convert, if t3 is 1 because it will make sure that it is in our range of rumber 0-9, not special characters.
@@ -72,6 +72,11 @@ Loop:
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1, this checks if it falls under <=96
 	addi $t9, $t0, -87
 	bne $t3, 1, invalidInputError		#when t3 is not equal to one it is invalid because less than 96 is not a valid
+convert:
+	mul $t5, $t4, $t9			# $t5 contains the product of the base- 35 exponent and our input number
+	add $s5, $s5, $t5			# that product is added to the register that stores the sum 
+	mul $t4, $t4, 35 
+	j Loop
 
 	
 	
