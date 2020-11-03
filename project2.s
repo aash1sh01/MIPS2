@@ -63,6 +63,8 @@ Loop:
 	li $t3, 64 				
 	slt $t3, $t3, $t0 			#if 64<t0, t3=1, as this recognizes the input as a Uppercase letter.
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1 
+	addi $t9, $t0, -55     
+	beq $t3, 1, convert
 
 	
 	
