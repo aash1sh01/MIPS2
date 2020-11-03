@@ -59,5 +59,10 @@ Loop:
 	addi $t9, $t0, -48			# initialising t9 for the original values have been calculated by substracting the overflowing ASCII
 	beq $t3, 1, convert			# passing it to label convert, if t3 is 1 because it will make sure that it is in our range of rumber 0-9, not special characters.
 
+	slti $t2, $t0, 90			#checking if it is a valid uppercase letter. my range is A to Y, so Y=89, so using value one more so less than works
+	li $t3, 64 				
+	slt $t3, $t3, $t0 			#if 64<t0, t3=1, as this recognizes the input as a Uppercase letter.
+	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1 
+
 	
 	
