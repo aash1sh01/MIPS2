@@ -85,6 +85,10 @@ print:
 	add $a0, $zero, $s5 
 	syscall
 	j exit
+invalidInputError:				#If the string includes at least one character not in the specified set, is empty, and contains space in between the program prints "Invalid Input"
+	li $v0, 4	
+	la $a0, invalid
+	syscall
 
 	
 	
