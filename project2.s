@@ -81,13 +81,16 @@ Space:						#sees if the space is in between or is at ending points, by using a3
 	beq $a3, 1, invalidInputError		# once non-null, non-space, non-endline is found, a3 = 1, if it is in between the characters, then it goes to invalid input, in short, if a3 is set to 1 twice in the Loop label, it will recognize that its not valid.
 	j Loop					#if it is a trailing space, go back to loop
 print:
-	li $v0, 1			#printing the sum of all the converted values stored in $s5
+	li $v0, 1				#printing the sum of all the converted values stored in $s5
 	add $a0, $zero, $s5 
 	syscall
 	j exit
 invalidInputError:				#If the string includes at least one character not in the specified set, is empty, and contains space in between the program prints "Invalid Input"
 	li $v0, 4	
 	la $a0, invalid
+	syscall
+exit:
+	li $v0, 10				#terminate after all these labels
 	syscall
 
 	
