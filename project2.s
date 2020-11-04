@@ -52,7 +52,7 @@ Loop:
 	beq $t0, 0, Loop			# if it is a null character, then it will just skip and continue the loop
 
 	li $a3, 1				# the program counter reaches this point when the character is not null, space or endline.
-	slti $t2, $t0, 58       	  		#checking if it is a valid digit. digit...  if t0 < 58, then t2=1 
+	slti $t2, $t0, 58       	  	#checking if it is a valid digit. digit...  if t0 < 58, then t2=1 
 	li $t3, 47
 	slt $t3, $t3, $t0                       # if 47 < t0,  t3 = 1, it acts as a bool so as to treat the input as a number 
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1 
@@ -80,6 +80,11 @@ convert:
 Space:						#sees if the space is in between or is at ending points, by using a3 as bool
 	beq $a3, 1, invalidInputError		# once non-null, non-space, non-endline is found, a3 = 1, if it is in between the characters, then it goes to invalid input, in short, if a3 is set to 1 twice in the Loop label, it will recognize that its not valid.
 	j Loop					#if it is a trailing space, go back to loop
+print:
+	li $v0, 1			#printing the sum of all the converted values stored in $s5
+	add $a0, $zero, $s5 
+	syscall
+	j exit
 
 	
 	
