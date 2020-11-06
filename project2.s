@@ -76,10 +76,12 @@ convert:
 	move $a0, $t9				#moving values so that we can now treat $a0 and $a2 as two different arguments, exponent and the number, that will be used to convert.
 	move $a2, $t4
 	jal converter				#created a new label converter that will now convert the input values.
-	
 	add $s5, $s5, $t5			# that product is added to the register that stores the sum 
 	mul $t4, $t4, 35 
 	j Loop
+		converter:
+		mul $v0, $a0, $a2		#the base and the argument have been multiplied and then returned to be added as the sum.
+		jr ra
 Space:						#sees if the space is in between or is at ending points, by using a3 as bool
 	beq $a3, 1, invalidInputError		# once non-null, non-space, non-endline is found, a3 = 1, if it is in between the characters, then it goes to invalid input, in short, if a3 is set to 1 twice in the Loop label, it will recognize that its not valid.
 	j Loop					#if it is a trailing space, go back to loop
