@@ -76,10 +76,10 @@ convert:
 	move $a0, $t9				#moving values so that we can now treat $a0 and $a2 as two different arguments, exponent and the number, that will be used to convert.
 	move $a2, $t4
 	jal converter				#created a new label converter that will now convert the input values.
-	add $s5, $s5, $t5			# that product is added to the register that stores the sum 
+	add $s5, $s5, $v0			# that product is added to the register that stores the sum 
 	mul $t4, $t4, 35 
 	j Loop
-		converter:
+	converter:
 		mul $v0, $a0, $a2		#the base and the argument have been multiplied and then returned to be added as the sum.
 		jr ra
 Space:						#sees if the space is in between or is at ending points, by using a3 as bool
