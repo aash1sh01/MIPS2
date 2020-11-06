@@ -34,7 +34,7 @@ First:
 	sb $a0, 2($s6)
 	lb $a0, 2($a1)	 			#storing the fourth non-space character to 3+ starting address of Four
 	sb $a0, 3($s6)
-	addi $a1, $a1, 1			# added 1 to $a1 because to read the characters from input string
+	addi $a1, $a1, 3			# added 3 to $a1 because to read the characters from input string but we have already read the three characters.
 	j First
 spaceOrEmpty:
 	beq $t9, 0, invalidInputError		# if $t9 = 0 then, it means no non-space character is found.
