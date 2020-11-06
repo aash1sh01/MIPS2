@@ -73,7 +73,10 @@ Loop:
 	addi $t9, $t0, -87
 	bne $t3, 1, invalidInputError		#when t3 is not equal to one it is invalid because less than 96 is not a valid
 convert:
-	mul $t5, $t4, $t9			# $t5 contains the product of the base- 35 exponent and our input number
+	move $a0, $t9				#moving values so that we can now treat $a0 and $a2 as two different arguments, exponent and the number, that will be used to convert.
+	move $a2, $t4
+	jal converter				#created a new label converter that will now convert the input values.
+	
 	add $s5, $s5, $t5			# that product is added to the register that stores the sum 
 	mul $t4, $t4, 35 
 	j Loop
