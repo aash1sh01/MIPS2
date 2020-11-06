@@ -3,6 +3,7 @@
 	reply: .space 1000			#reserving the 1000 bytes of memory for userInput
 	four: .space 4				#new string with space for just four after the first non-space non-null character add 
 .text
+.globl main
 main:
 						#asking the user for input
 	li $v0, 8
@@ -11,7 +12,7 @@ main:
 	syscall
 	la $a1, reply				#loading the adress of a1 in reply to increment by 1 while checking all the values
 	li $t9, 0				#if it is 0, then a valid character is not found.
-
+.globl main
 First:
 	lb $a0,($a1)        			# read the character
 	addi $a1, $a1, 1			# after reading increase the pointer by 1 
@@ -36,12 +37,14 @@ First:
 	sb $a0, 3($s6)
 	addi $a1, $a1, 3			# added 3 to $a1 because to read the characters from input string but we have already read the three characters.
 	j First
+.globl main
 spaceOrEmpty:
 	beq $t9, 0, invalidInputError		# if $t9 = 0 then, it means no non-space character is found.
 	li $s5, 0				# this register holds the final sum of the Base-35 number
 	li $t4, 1				# this register holds the exponent of 35. At first, it is 1, then 35, then 35*35
 	li $t7, 0				# this is my loop counter. when it equals 3 the loop exits. 
 	la $s6, four+4				#to start at the end of the string, adding 4 to come backwards
+.globl main
 Loop:
 	beq $t7, 4, print			#if the value of the counter = 4, then the loop exits
 	addi $t7, $t7, 1 			# incrementing the value of the counter
@@ -72,6 +75,7 @@ Loop:
 	and $t3, $t3, $t2  			# if t3 and t2 are same, t3  = 1, this checks if it falls under <=96
 	addi $t9, $t0, -87
 	bne $t3, 1, invalidInputError		#when t3 is not equal to one it is invalid because less than 96 is not a valid
+.globl main
 convert:
 	move $a0, $t9				#moving values so that we can now treat $a0 and $a2 as two different arguments, exponent and the number, that will be used to convert.
 	move $a2, $t4
